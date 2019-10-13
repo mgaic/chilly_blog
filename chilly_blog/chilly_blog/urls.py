@@ -24,8 +24,9 @@ import blog.views as bv
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('logout/', lv.quit_login, name = 'logout'),
     path('', bv.index, name = 'index'),
-    path('logout/', lv.logout, name = 'logout'),
+
 
     path('login/', include(login.urls)),
     path('register/', include(register.urls)),

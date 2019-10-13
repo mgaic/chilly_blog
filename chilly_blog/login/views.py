@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.contrib.auth import logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -23,9 +24,8 @@ def login(request):
             print("用户名或密码错误")
             return render(request, 'login/login.html', {'err_msg':'用户名或密码错误'})
 
-def logout(request):
-    print("0")
+def quit_login(request):
     logout(request=request)
-    print("1")
-    return HttpResponse("123")
+
+    return HttpResponseRedirect('/')
     # pass
