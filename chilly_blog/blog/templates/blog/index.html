@@ -24,10 +24,10 @@
 					<article>
 						<header class="entry-header">
 							<h1 class="entry-title">
-								<a href="#" title="{{blog.title}}" rel="bookmark">{{blog.title}}</a>
+								<a href="{% url 'detail' blog.id %}" title="{{blog.title}}" rel="bookmark">{{blog.title}}</a>
 							</h1>
 						</header>
-						<div class="entry-content">{{blog.content}}</div>
+						<div class="entry-content">{{blog.content | safe | truncatechars_html:100}}</div>
 						<footer class="entry-meta">
 							发布于<a href="#" title="{{ blog.update_time | date:"Y-m-d" }}" rel="bookmark"><time class="entry-date" datetime="{{ blog.update_time | date:"Y-m-d" }}">{{ blog.update_time | date:"Y-m-d" }}</time></a>。
 							属于 <a href="#" title="查看 {{blog.blog_type}}中的全部文章" rel="category">{{blog.blog_type}}</a> 分类。

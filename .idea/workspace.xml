@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="edb916fd-f46f-4347-841b-90838ecde2b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/chilly_blog/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/chilly_blog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/nav.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/title.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/title.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,17 +32,17 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/chilly_blog/blog/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/chilly_blog/blog/static/blog" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/chilly_blog/blog/static/blog" />
+      <recent name="$PROJECT_DIR$/chilly_blog/blog/templates" />
+      <recent name="$PROJECT_DIR$/chilly_blog/login/static" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/chilly_blog/blog/templates/blog" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/chilly_blog/blog/templates" />
-      <recent name="$PROJECT_DIR$/chilly_blog/blog/static/blog" />
-      <recent name="$PROJECT_DIR$/chilly_blog/login/static" />
     </key>
   </component>
   <component name="RunDashboard">
