@@ -3,7 +3,7 @@
 				<li><a href="/">首页</a></li>
 				{% for type in blog_types %}
 					<li>
-						<a href="#">{{ type.type_name }}</a>
+						<a href="{% url 'type' type.id %}">{{ type.type_name }}</a>
 						<ul class="sub-menu"></ul>
 					</li>
 				{% endfor %}

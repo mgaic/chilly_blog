@@ -22,7 +22,7 @@
 				<h3 class="widget-title">热门文章</h3>
 				<ul>
 					{% for blog in hot_blogs %}
-					<li><font style="color:#7a7a7a;">[{{ forloop.counter }} ]</font>&nbsp;<a href="#" title="{{ blog.title }}">{{ blog.title }}</a></li>
+					<li><font style="color:#7a7a7a;">[{{ forloop.counter }} ]</font>&nbsp;<a href="{% url 'detail' blog.id %}" title="{{ blog.title }}">{{ blog.title }}</a></li>
 					{% endfor %}
 				</ul>
 			</aside>
@@ -31,7 +31,7 @@
 				<h3 class="widget-title">最近更新</h3>
 				<ul>
 					{% for blog in latest_blogs %}
-					<li><font style="color:#7a7a7a;">[{{ forloop.counter }}]</font>&nbsp;<a href="#" title="{{ blog.title }}">{{ blog.title }}</a></li>
+					<li><font style="color:#7a7a7a;">[{{ forloop.counter }}]</font>&nbsp;<a href="{% url 'detail' blog.id %}" title="{{ blog.title }}">{{ blog.title }}</a></li>
 					{% endfor %}
 				</ul>
 			</aside>
@@ -40,7 +40,7 @@
 				<h3 class="widget-title">日期归档</h3>
 				<ul>
                     {% for blog_date,count in date_count_dict.items  %}
-                    <li><a href="#" title="{{ blog_date }}">{{ blog_date }}</a>&nbsp;<font style="color:#7a7a7a;">({{count}})</font></li>
+                    <li><a href="{% url 'date' blog_date.year blog_date.month%}" title="{{ blog_date }}">{{ blog_date | date:"Y年m月"  }}</a>&nbsp;<font style="color:#7a7a7a;">({{count}})</font></li>
                     {% endfor %}
                 </ul>
 			</aside>
@@ -49,7 +49,7 @@
 				<h3 class="widget-title">分类目录</h3>
 				<ul>
 					{% for type in blog_types %}
-						<li class="cat-item cat-item-2"><a href="#" title="{{ type.type_name }}">{{ type.type_name }}</a></li>
+						<li class="cat-item cat-item-2"><a href="{% url 'type' type.id %}" title="{{ type.type_name }}">{{ type.type_name }}</a>({{type.blog_set.count}})</li>
 					{% endfor %}
 
 				</ul>

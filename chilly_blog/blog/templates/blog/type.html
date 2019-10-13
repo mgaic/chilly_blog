@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="zh-CN">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="zh-CN">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="zh-CN"><!--<![endif]-->
+
+{% include 'blog/header.html' %}
+
+<body class="home blog custom-background custom-font-enabled single-author">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			{% include 'blog/title.html' %}
+			{% include 'blog/nav.html' %}
+		</header>
+		<div id="main" class="wrapper">
+			<div id="primary" class="site-content">
+				<div id="content" role="main">
+					{% for blog in blogs_with_type %}
+					<article>
+						<header class="entry-header">
+							<h1 class="entry-title">
+								<a href="{% url 'detail' blog.id %}" title="{{blog.title}}" rel="bookmark">{{blog.title}}</a>
+							</h1>
+						</header>
+						<div class="entry-content">{{blog.content | safe | truncatechars_html:100}}</div>
+						<footer class="entry-meta">
+							发布于<a href="#" title="{{ blog.update_time | date:"Y-m-d" }}" rel="bookmark"><time class="entry-date" datetime="{{ blog.update_time | date:"Y-m-d" }}">{{ blog.update_time | date:"Y-m-d" }}</time></a>。
+							属于 <a href="#" title="查看 {{blog.blog_type}}中的全部文章" rel="category">{{blog.blog_type}}</a> 分类。
+							阅读数： {{ blog.read_count }}
+						</footer>
+					</article>
+					{% endfor %}
+				</div>
+			</div>
+			{% include 'blog/aside.html' %}
+		</div>
+		{% include 'blog/footer.html' %}
+	</div>
+</body>
+</html>
