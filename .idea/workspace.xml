@@ -3,18 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="edb916fd-f46f-4347-841b-90838ecde2b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/static/blog/default.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/static/blog/googlecode.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/static/blog/solarized_dark.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/aside.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/aside.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/nav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/title.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/title.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/chilly_blog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/login/templates/login/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/login/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/login/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/login/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/login/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/register/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/register/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/register/templates/register/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/register/templates/register/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/register/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/register/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

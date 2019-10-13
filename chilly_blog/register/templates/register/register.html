@@ -19,10 +19,12 @@
     </head>
 	<body class="widescreen">
 
-			<div class="account-pages"></div>
+	<div class="account-pages"></div>
 	<div class="clearfix"></div>
 	<div class="wrapper-page">
-
+		{% if error_msg %}
+		<div class="alert alert-danger">{{ error_msg }} <br></div>
+		{% endif %}
 
 		<div class=" card-box">
 			<div class="panel-heading">
@@ -30,8 +32,8 @@
 			</div>
 
 			<div class="panel-body">
-				<form class="form-horizontal m-t-20" action="http://www.zfsphp.com/signup" method="POST">
-					<input type="hidden" name="_token" value="KN8iWJEAWZuGPKkWgavhIqzBpzigXTSL6kecHDZl">
+				<form class="form-horizontal m-t-20" action="{% url 'register' %}" method="POST">
+					{% csrf_token %}
 
 					<div class="form-group ">
 						<div class="col-xs-12">
@@ -73,7 +75,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-center">
 				<p>
-					已有账号?<a href="http://www.zfsphp.com/login" class="text-primary m-l-5"><b> 登录</b></a>
+					已有账号?<a href="{% url 'login' %}" class="text-primary m-l-5"><b> 登录</b></a>
 				</p>
 			</div>
 		</div>

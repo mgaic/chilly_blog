@@ -31,7 +31,8 @@ def detail(request, blog_id):
 
     context = {}
     # 当前博客
-    context['cur_blog'] = get_object_or_404(Blog, id=blog_id)
+    cur_blog = get_object_or_404(Blog, id=blog_id)
+    context['cur_blog'] = cur_blog
     # 所有博客类型
     blog_types = BlogType.objects.all()
     context['blog_types'] = blog_types
@@ -49,6 +50,11 @@ def detail(request, blog_id):
         count = Blog.objects.filter(update_time__year=blog_date.year, update_time__month=blog_date.month).count()
         date_count_dict[blog_date] = count
     context['date_count_dict'] = date_count_dict
+
+    #上下篇
+    context['previous_blog'] = Blog.objects.filter(id__lt = cur_blog.id).last()
+    context['next_blog'] = Blog.objects.filter(id__gt = cur_blog.id).first()
+
 
 
     return render(request, 'blog/detail.html', context)

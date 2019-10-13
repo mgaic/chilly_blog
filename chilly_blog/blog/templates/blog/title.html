@@ -1,7 +1,10 @@
 <hgroup>
 			<h1 class="site-title">
 				<a href="/" title="chilly个人博客" rel="home">chilly个人博客</a>
-            </h1>
+				{% if  user.is_authenticated %}
+				<input type="button" class="btn-default" value="{{user.username}}   退出" title="test" onclick="location.href = '{% url 'logout'%}';">
+            	{% endif %}
+			</h1>
             <!--简介-->
 			<h2 class="site-description">chilly个人博客是一个关注Python技术的个人博客，提供一个互联网从业者的学习成果和工作经验总结。</h2>
 		</hgroup>

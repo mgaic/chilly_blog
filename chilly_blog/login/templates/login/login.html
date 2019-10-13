@@ -8,7 +8,7 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
         <link rel="shortcut icon" href="{% static 'images/favicon_1.ico' %}">
-        <title>登录 - 张仿松个人博客</title>
+        <title>登录 - chilly个人博客</title>
         <link rel="stylesheet" href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'login/bootstrap.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'login/core.css' %}">
@@ -23,17 +23,18 @@
 		    <div class="account-pages"></div>
     <div class="clearfix"></div>
     <div class="wrapper-page">
-
+        {% if error_msg %}
+		<div class="alert alert-danger">{{ err_msg }} <br></div>
+		{% endif %}
         
     	<div class="card-box">
             <div class="panel-heading">
-                <h3 class="text-center"> 登录 <strong class="text-custom">张仿松个人博客</strong> </h3>
+                <h3 class="text-center"> 登录 <strong class="text-custom">chilly个人博客</strong> </h3>
             </div>
 
             <div class="panel-body">
-            <form class="form-horizontal m-t-20" action="http://www.zfsphp.com/login" method="POST">
-                <input type="hidden" name="_token" value="pLCLv5F6uRsp0EGiA4JuusWrjz6DDo1G4lWWb032">
-
+            <form class="form-horizontal m-t-20" action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
                 <div class="form-group ">
                     <div class="col-xs-12">
                         <input class="form-control" type="text" name="username" placeholder="用户名/邮箱">
@@ -45,7 +46,6 @@
                         <input class="form-control" type="password" name="password" placeholder="密码" value="">
                     </div>
                 </div>
-
                 <div class="form-group ">
                     <div class="col-xs-12">
                         <div class="checkbox checkbox-primary">
@@ -76,7 +76,7 @@
 
         <div class="row">
         	<div class="col-sm-12 text-center">
-        		<p>还没有账号? <a href="http://www.zfsphp.com/signup" class="text-primary m-l-5"><b>注册</b></a></p>
+        		<p>还没有账号? <a href="{% url 'register' %}" class="text-primary m-l-5"><b>注册</b></a></p>
 
             </div>
         </div>

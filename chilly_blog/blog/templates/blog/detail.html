@@ -108,9 +108,59 @@
 			{% include 'blog/nav.html' %}
 		</header>
 		<div id="main" class="wrapper">
-			<div id="primary" class="site-content fixck">
+			<div id="primary" class="site-content ">
 				<div id="content" role="main">
-                    {{cur_blog.content |safe}}
+					<article>
+					<header class="entry-header">
+						<h1 class="entry-title" align="center">
+							<a  href="#" title="{{cur_blog.title}}" rel="bookmark">{{cur_blog.title}}</a>
+						</h1>
+					</header>
+					<div class="fixck">
+						{{cur_blog.content |safe}}
+					</div >
+                    </article>
+				</div>
+				<nav class="nav-single">
+					<div class="prev">上一篇：
+						{% if previous_blog %}
+						<a href="{% url 'detail' previous_blog.id %}">{{ previous_blog.title }}</a>
+						{% else %}
+						没有了
+						{% endif %}
+					</div>
+					<div class="prev">下一篇：
+						{% if next_blog %}
+						<a href="{% url 'detail' next_blog.id %}">{{ next_blog.title }}</a>
+						{% else %}
+						没有了
+						{% endif %}
+					</div>
+				</nav>
+				<div id="comments" class="comments-area">
+					<h2 class="comments-title">《<span>{{cur_blog.title}}</span>》上有&nbsp;2&nbsp;条评论!</h2>
+					<ol class="commentlist" id="commentWraper">
+						<li class="comment even thread-even depth-0" id="li-comment-6">
+							<article id="comment-6" class="comment">
+								<header class="comment-meta comment-author vcard">
+									<img src="http://www.zfsphp.com/uploads/images//avatar/201909/1569501373.jpg" class="photo" height="44" width="44"/>
+									<cite class="fn">11 </cite>
+									<time datetime="">2周前</time>
+								</header>
+								<section class="comment-content comment" style="margin-bottom:10px;line-height:25px;">你好哦</section>
+							</article>
+						</li>
+						<li class="comment even thread-even depth-0" id="li-comment-6">
+						<article id="comment-6" class="comment">
+							<header class="comment-meta comment-author vcard"><img src="http://www.zfsphp.com/uploads/images//avatar/201910/1570758640.jpg" class="photo" height="44" width="44"/><cite class="fn">kirds </cite><time datetime="">2天前</time></header>
+							<section class="comment-content comment" style="margin-bottom:10px;line-height:25px;">好喜欢您博客的风格，好干净好清新。好喜欢这个配色</section>
+						</article>
+						</li>
+					</ol>
+
+					<div id="respond">
+					<h3 id="reply-title">发表评论  <input type="submit" value="登录" onclick=" location.href = '{% url 'login' %}' ;"></h3>
+					</div>
 				</div>
 			</div>
 			{% include 'blog/aside.html' %}
