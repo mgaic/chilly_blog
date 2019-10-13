@@ -1,0 +1,11 @@
+<nav id="site-navigation" class="main-navigation" role="navigation">
+			<ul class="nav-menu">
+				<li><a href="#">首页</a></li>
+				{% for type in blog_types %}
+					<li>
+						<a href="#">{{ type.type_name }}</a>
+						<ul class="sub-menu"></ul>
+					</li>
+				{% endfor %}
+            </ul>
+		</nav>

@@ -1,0 +1,57 @@
+<div id="secondary" class="widget-area" role="complementary">
+            <!--搜索按钮-->
+            <aside id="search-2" class="widget widget_search">
+				<form role="search" id="searchform" action="" method="post">
+					<div>
+						<label class="screen-reader-text" for="s">搜索：</label>
+						<input placeholder="搜索" type="text" name="keywords" id="s">
+						<input type="submit" class="btn btn-default" id="searchsubmit" value="搜索">
+					</div>
+				</form>
+                <script type="text/javascript">
+					$(function (){
+						$("#searchsubmit").click(function (){
+							location.href = "http://www.zfsphp.com" + "/search/"+$("#s").val()+'.html';
+							return false;
+						});
+					});
+				</script>
+			</aside>
+            <!--热门文章-->
+			<aside id="recent-posts-2" class="widget widget_recent_entries">
+				<h3 class="widget-title">热门文章</h3>
+				<ul>
+					{% for blog in hot_blogs %}
+					<li><font style="color:#7a7a7a;">[{{ forloop.counter }} ]</font>&nbsp;<a href="#" title="{{ blog.title }}">{{ blog.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</aside>
+            <!--最近更新-->
+			<aside class="widget widget_recent_entries">
+				<h3 class="widget-title">最近更新</h3>
+				<ul>
+					{% for blog in latest_blogs %}
+					<li><font style="color:#7a7a7a;">[{{ forloop.counter }}]</font>&nbsp;<a href="#" title="{{ blog.title }}">{{ blog.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</aside>
+            <!--日期归档-->
+			<aside id="archives-2" class="widget widget_archive">
+				<h3 class="widget-title">日期归档</h3>
+				<ul>
+                    {% for blog_date,count in date_count_dict.items  %}
+                    <li><a href="#" title="{{ blog_date }}">{{ blog_date }}</a>&nbsp;<font style="color:#7a7a7a;">({{count}})</font></li>
+                    {% endfor %}
+                </ul>
+			</aside>
+            <!--类型分类-->
+			<aside id="categories-2" class="widget widget_categories">
+				<h3 class="widget-title">分类目录</h3>
+				<ul>
+					{% for type in blog_types %}
+						<li class="cat-item cat-item-2"><a href="#" title="{{ type.type_name }}">{{ type.type_name }}</a></li>
+					{% endfor %}
+
+				</ul>
+			</aside>
+</div>

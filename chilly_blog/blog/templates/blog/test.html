@@ -1,0 +1,10 @@
+{% load static %}
+<div id="main" class="wrapper">
+    <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+			<div id="primary" class="site-content">
+				<div id="content" role="main">
+                    {{cur_blog.content | safe }}
+				</div>
+			</div>
+			{% include 'blog/aside.html' %}
+		</div>
