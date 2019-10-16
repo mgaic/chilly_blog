@@ -20,12 +20,12 @@ class CustomComment(models.Model):
     def __str__(self):
         return self.comment_content[:50]
 
-    def short_content(self):     #自定义显示的内容 配合admin
+    def short_content(self):     #内容超过50字符就用...代替
         if len(str(self.comment_content)) > 50:
             return '{}...'.format(str(self.comment_content)[0:50])
         else:
             return str(self.comment_content)
 
     # short_content.allow_tags = True
-    short_content.short_description = u"评论内容"  #设置列名
+    short_content.short_description = u"评论内容"  #设置列名ls
 
