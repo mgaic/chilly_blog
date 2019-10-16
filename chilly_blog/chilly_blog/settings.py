@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'register',
     'blog',
     'ckeditor',
+    'custom_comment',
 ]
 
 MIDDLEWARE = [

@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="edb916fd-f46f-4347-841b-90838ecde2b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/chilly_blog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/chilly_blog/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/login/templates/login/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/login/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/login/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
