@@ -4,7 +4,6 @@
     <list default="true" id="edb916fd-f46f-4347-841b-90838ecde2b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/custom_comment/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/custom_comment/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

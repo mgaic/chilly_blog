@@ -141,7 +141,7 @@
 				<div id="comments" class="comments-area">
 					<h2 class="comments-title">《<span>{{cur_blog.title}}</span>》上共有{{cur_blog.customcomment_set.count}}条评论!</h2>
 					<ol class="commentlist" id="commentWraper">
-						{% for comment in cur_blog.customcomment_set.all %}
+						{% for comment in cur_blog.customcomment_set.all|slice:":5"  %}
 						<li class="comment even thread-even depth-0" id="li-comment-6">
 							<article id="comment-6" class="comment">
 								<header class="comment-meta comment-author vcard">
@@ -206,8 +206,13 @@
 			success: function(data){
 				if (data.status == 'success'){
 					alert("评论成功");
-					$("textarea[name='content']").val('');
-					$("#commentWraper").prepend(data.html);
+					$("textarea[name='content']").val(''); //清空文本框内容
+					$("#commentWraper").prepend(data.html); //添加评论节点
+<!--					alert($("#commentWraper").children("li").length);-->
+<!--					alert($("#commentWraper > li").length);-->
+					if ($("#commentWraper").children("li").length > 5){ //显示的评论大于5条就删除最后一条评论
+						$("#commentWraper li:last-child").remove()
+					}
 
 				}
 				else{
