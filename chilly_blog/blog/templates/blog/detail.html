@@ -114,6 +114,7 @@
 					<header class="entry-header">
 						<h1 class="entry-title" align="center">
 							<a  href="#" title="{{cur_blog.title}}" rel="bookmark">{{cur_blog.title}}</a>
+							<span style="font-size: 12px !important;">  &nbsp;&nbsp;&nbsp;&nbsp;(阅读数：{{cur_blog.read_count}})</span>
 						</h1>
 					</header>
 					<div class="fixck">
@@ -138,7 +139,7 @@
 					</div>
 				</nav>
 				<div id="comments" class="comments-area">
-					<h2 class="comments-title">《<span>{{cur_blog.title}}</span>》上有&nbsp;2&nbsp;条评论!</h2>
+					<h2 class="comments-title">《<span>{{cur_blog.title}}</span>》上共有{{cur_blog.customcomment_set.count}}条评论!</h2>
 					<ol class="commentlist" id="commentWraper">
 						<li class="comment even thread-even depth-0" id="li-comment-6">
 							<article id="comment-6" class="comment">

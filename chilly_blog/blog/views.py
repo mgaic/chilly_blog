@@ -75,7 +75,7 @@ def detail(request, blog_id):
         cur_blog.save()
         read_list.append(blog_id)
         response.set_cookie("read", json.dumps(read_list), max_age = 60 * 30)
-        
+
     return response
 
 
