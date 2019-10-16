@@ -146,10 +146,10 @@
 							<article id="comment-6" class="comment">
 								<header class="comment-meta comment-author vcard">
 									<img src="http://www.zfsphp.com/uploads/images//avatar/201909/1569501373.jpg" class="photo" height="44" width="44"/>
-									<cite class="fn">{{comment.comment_content}}</cite>
+									<cite class="fn">{{comment.comment_user.username}}</cite>
 									<time datetime="">{{comment.comment_time}}</time>
 								</header>
-								<section class="comment-content comment" style="margin-bottom:10px;line-height:25px;">{{comment.comment_user.username}}</section>
+								<section class="comment-content comment" style="margin-bottom:10px;line-height:25px;">{{comment.comment_content}}</section>
 							</article>
 						</li>
 						{%  empty %}
@@ -161,15 +161,82 @@
 						</li>
 						{% endfor %}
 					</ol>
-
+					{% if not user.is_authenticated %}
 					<div id="respond">
 					<h3 id="reply-title">发表评论  <input type="submit" value="登录" onclick=" location.href = '{% url 'login' %}' ;"></h3>
 					</div>
+					{% else %}
+					<div id="respond">
+						<h3 id="reply-title">发表评论 </h3>
+						<form  id="commentform">
+							<input type="hidden" name="_token" value="pjO628tjjcLWKrdk5MawxPJIPamJKMrLcNn8dil9">
+							<p class="comment-form-comment">
+								<textarea id="body" name="content" cols="45" rows="4" aria-required="true"></textarea>
+							</p>
+							<p class="form-submit">
+							<input  type="submit" id="submit_btn" value="发表评论" />
+							</p>
+						</form>
+					</div>
+					{% endif %}
 				</div>
 			</div>
 			{% include 'blog/aside.html' %}
 		</div>
 		{% include 'blog/footer.html' %}
 	</div>
+	<input type="button" id="test_btn" value="发表评论">
+	<script type="text/javascript">
+	$("#submit_btn").click(function(){
+		if ($("textarea[name='content']").val() == ''){
+			alert("评论内容为空");
+			return false;
+		}
+
+		$.ajaxSetup({
+			data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+		});
+
+		$.ajax({
+
+			url: "{% url 'custom_comment' %}",
+			type: 'POST',
+			data: {'blog_id':{{cur_blog.id}}, 'comment_content':$("textarea[name='content']").val(), 'user_id':{{user.id}}},
+			cache: false,
+			success: function(data){
+				if (data.status == 'success'){
+					alert("评论成功");
+					$("textarea[name='content']").val('');
+
+				}
+				else{
+					alert("评论失败");
+				}
+
+
+			},
+			// 提交错误，调用方法
+			error: function(xhr){
+				console.log(xhr);
+			}
+
+   	 	});
+
+
+
+
+
+
+
+
+
+
+			return false;
+		});
+
+
+
+
+	</script>
 </body>
 </html>

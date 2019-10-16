@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 import login.urls
 import register.urls
+import custom_comment.urls
+
 import login.views as lv
 import blog.urls
 import blog.views as bv
@@ -24,6 +26,7 @@ import blog.views as bv
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('comment/', include(custom_comment.urls)),
     path('logout/', lv.quit_login, name = 'logout'),
     path('', bv.index, name = 'index'),
 
@@ -31,5 +34,9 @@ urlpatterns = [
     path('login/', include(login.urls)),
     path('register/', include(register.urls)),
     path('blog/', include(blog.urls)),
+
+
+
+
 
 ]
