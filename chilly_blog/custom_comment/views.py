@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from django.template import Context, Template
 
 # Create your views here.
 from blog.models import Blog
@@ -19,16 +20,20 @@ def custom_comment(request):
             print("success")
         except:
             return JsonResponse({"status": "failed", "msg": "comment parameter error"})
+
         html = """<li class="comment even thread-even depth-0" id="li-comment-6">
 				<article id="comment-6" class="comment">
 						<header class="comment-meta comment-author vcard">
 						<img src="http://www.zfsphp.com/uploads/images//avatar/201909/1569501373.jpg" class="photo" height="44" width="44"/>
-						    <cite class="fn"></cite>
-							<time datetime=""></time>
+						    <cite class="fn">{{comment.comment_user.username}} </cite>
+							<time datetime="">{{comment.comment_time}}</time>
 						</header>
-						<section class="comment-content comment" style="margin-bottom:10px;line-height:25px;"></section>
+						<section class="comment-content comment" style="margin-bottom:10px;line-height:25px;">{{comment.comment_content}} </section>
 				</article></li>"""
-        return JsonResponse({"status": "success", "msg": "comment success", "html":html })
+
+        t = Template(html)
+        c = Context({'comment': custom_comment})
+        return JsonResponse({"status": "success", "msg": "comment success", "html":t.render(c) })
 
     print("failed")
     return JsonResponse({"status":"failed", "msg":"request method error"})

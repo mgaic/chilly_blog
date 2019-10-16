@@ -207,6 +207,7 @@
 				if (data.status == 'success'){
 					alert("评论成功");
 					$("textarea[name='content']").val('');
+					$("#commentWraper").prepend(data.html);
 
 				}
 				else{
