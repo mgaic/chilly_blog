@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="edb916fd-f46f-4347-841b-90838ecde2b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/date.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/date.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/type.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/type.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/blog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/chilly_blog/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,7 +33,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/chilly_blog/blog/static/blog" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">

@@ -9,16 +9,27 @@ from django.core.cache import cache
 
 # 首页
 def index(request):
-    # cache.set("time", '2017', 60*60)
-    # print(cache.get("time"))
-
     context = {}
+
     # 所有博客类型
-    blog_types = BlogType.objects.all()
-    context['blog_types'] = blog_types
+    if cache.get("blog_types"): # 如果博客类型在缓存中，就从缓存中取得类型
+        blog_types = cache.get("blog_types")
+        print("从缓存中加载博客类型")
+    else:                          #操作DB取博客类型,并且添加缓存
+        blog_types = BlogType.objects.all()
+        cache.set("blog_types", blog_types, 1800)
+        print("添加博客类型缓存")
 
     # 时间排序所有博客
-    all_blogs = Blog.objects.all().order_by('-update_time')
+    if cache.get("all_blogs"):
+        all_blogs = cache.get("all_blogs")
+        print("从缓存中加载所有博客")
+    else:
+        all_blogs = Blog.objects.all().order_by('-update_time')
+        cache.set("all_blogs", all_blogs, 1800)
+        print("添加所有博客缓存")
+
+    #分页
     paginator = Paginator(all_blogs, settings.INDEX_PAGE_BLOG_COUNT)
     page_num = request.GET.get('page', 1)  # 获取页码参数
     page_of_blogs = paginator.get_page(page_num) #按照时间排序分页后的博客
@@ -33,24 +44,44 @@ def index(request):
     if page_range[-1] != page_of_blogs.paginator.num_pages:
         page_range.append(page_of_blogs.paginator.num_pages)
 
-    # 阅读量排序最近5篇博客
-    context['hot_blogs'] = Blog.objects.all().order_by('-read_count', '-update_time')[:5]
+    # 获取阅读量排序最近5篇博客
+    if cache.get("hot_blogs"):
+        hot_blogs = cache.get("hot_blogs")
+        print("从缓存中加载热门博客")
+    else:
+        hot_blogs = Blog.objects.all().order_by('-read_count', '-update_time')[:5]
+        cache.set("hot_blogs", hot_blogs, 1800)
+        print("添加热门博客缓存")
 
-    #更新时间排序最近5篇博客
-    context['latest_blogs'] = Blog.objects.all().order_by('-update_time')[:5]
+    #获取更新时间排序最近5篇博客
+    if cache.get("latest_blogs"):
+        latest_blogs = cache.get("latest_blogs")
+        print("从缓存中加载最近博客")
+    else:
+        latest_blogs = Blog.objects.all().order_by('-update_time')[:5]
+        cache.set("latest_blogs", latest_blogs, 1800)
+        print("添加最近更新博客缓存")
 
     # 博客按照时间分类 以及每个分类下的博客数量
-    date_count_dict = {}
-    blog_dates = Blog.objects.dates('update_time', 'month', order='DESC')
-    for blog_date in blog_dates:
-        count = Blog.objects.filter(update_time__year=blog_date.year, update_time__month=blog_date.month).count()
-        date_count_dict[blog_date] = count
+    if cache.get("date_count_dict"):
+        date_count_dict = cache.get("date_count_dict")
+        print("从缓存中加载日期分类以及数量")
+    else:
+        date_count_dict = {}
+        blog_dates = Blog.objects.dates('update_time', 'month', order='DESC')
+        for blog_date in blog_dates:
+            count = Blog.objects.filter(update_time__year=blog_date.year, update_time__month=blog_date.month).count()
+            date_count_dict[blog_date] = count
+        cache.set("date_count_dict", date_count_dict, 1800)
+        print("添加最近更新日期分类以及数量")
 
     context['date_count_dict'] = date_count_dict
     context['page_of_blogs'] = page_of_blogs
     context['page_range'] = page_range
-    print(page_range)
-    print(page_of_blogs.number)
+    context['blog_types'] = blog_types
+    context['hot_blogs'] = hot_blogs
+    context['latest_blogs'] = latest_blogs
+
     return render(request, 'blog/index.html', context)
 
 
@@ -62,29 +93,55 @@ def detail(request, blog_id):
     context['cur_blog'] = cur_blog
 
     # 所有博客类型
-    blog_types = BlogType.objects.all()
-    context['blog_types'] = blog_types
+    if cache.get("blog_types"):  # 如果博客类型在缓存中，就从缓存中取得类型
+        blog_types = cache.get("blog_types")
+        print("从缓存中加载博客类型")
+    else:  # 操作DB取博客类型,并且添加缓存
+        blog_types = BlogType.objects.all()
+        cache.set("blog_types", blog_types, 1800)
+        print("添加博客类型缓存")
 
-    # 时间排序最近5篇博客
-    context['latest_blogs'] = Blog.objects.all().order_by('-update_time')[:5]
+    # 获取阅读量排序最近5篇博客
+    if cache.get("hot_blogs"):
+        hot_blogs = cache.get("hot_blogs")
+        print("从缓存中加载热门博客")
+    else:
+        hot_blogs = Blog.objects.all().order_by('-read_count', '-update_time')[:5]
+        cache.set("hot_blogs", hot_blogs, 1800)
+        print("添加热门博客缓存")
 
-    # 阅读量排序最近5篇博客
-    context['hot_blogs'] = Blog.objects.all().order_by('-read_count', '-update_time')[:5]
+    # 获取更新时间排序最近5篇博客
+    if cache.get("latest_blogs"):
+        latest_blogs = cache.get("latest_blogs")
+        print("从缓存中加载最近博客")
+    else:
+        latest_blogs = Blog.objects.all().order_by('-update_time')[:5]
+        cache.set("latest_blogs", latest_blogs, 1800)
+        print("添加最近更新博客缓存")
 
     # 博客按照时间分类 以及每个分类下的博客数量
-    date_count_dict = {}
-    blog_dates = Blog.objects.dates('update_time', 'month', order='DESC')
-    for blog_date in blog_dates:
-        count = Blog.objects.filter(update_time__year=blog_date.year, update_time__month=blog_date.month).count()
-        date_count_dict[blog_date] = count
+    if cache.get("date_count_dict"):
+        date_count_dict = cache.get("date_count_dict")
+        print("从缓存中加载日期分类以及数量")
+    else:
+        date_count_dict = {}
+        blog_dates = Blog.objects.dates('update_time', 'month', order='DESC')
+        for blog_date in blog_dates:
+            count = Blog.objects.filter(update_time__year=blog_date.year,
+                                        update_time__month=blog_date.month).count()
+            date_count_dict[blog_date] = count
+        cache.set("date_count_dict", date_count_dict, 1800)
+        print("添加最近更新日期分类以及数量")
 
 
-
-    # 上下篇
     context['previous_blog'] = Blog.objects.filter(id__lt=cur_blog.id).last()
     context['next_blog'] = Blog.objects.filter(id__gt=cur_blog.id).first()
+    context['blog_types'] = blog_types
+    context['hot_blogs'] = hot_blogs
+    context['latest_blogs'] = latest_blogs
     context['date_count_dict'] = date_count_dict
 
+    #判断cookie,进行博客计数
     if 'read' not in request.COOKIES:
         response = render(request, 'blog/detail.html', context)
         cur_blog.read_count += 1
@@ -110,6 +167,7 @@ def detail(request, blog_id):
 # 类型分类下的博客
 def get_blog_by_type(request, type_id):
     context = {}
+
     blog_type =get_object_or_404(BlogType, id=type_id)
     blogs_with_type = blog_type.blog_set.all()
 
@@ -133,29 +191,55 @@ def get_blog_by_type(request, type_id):
     context['page_of_blogs_with_type'] = page_of_blogs
 
     # 所有博客类型
-    blog_types = BlogType.objects.all()
-    context['blog_types'] = blog_types
+    if cache.get("blog_types"):  # 如果博客类型在缓存中，就从缓存中取得类型
+        blog_types = cache.get("blog_types")
+        print("从缓存中加载博客类型")
+    else:  # 操作DB取博客类型,并且添加缓存
+        blog_types = BlogType.objects.all()
+        cache.set("blog_types", blog_types, 1800)
+        print("添加博客类型缓存")
 
-    # 时间排序最近5篇博客
-    context['latest_blogs'] = Blog.objects.all().order_by('-update_time')[:5]
+    # 获取阅读量排序最近5篇博客
+    if cache.get("hot_blogs"):
+        hot_blogs = cache.get("hot_blogs")
+        print("从缓存中加载热门博客")
+    else:
+        hot_blogs = Blog.objects.all().order_by('-read_count', '-update_time')[:5]
+        cache.set("hot_blogs", hot_blogs, 1800)
+        print("添加热门博客缓存")
 
-    # 阅读量排序最近5篇博客
-    context['hot_blogs'] = Blog.objects.all().order_by('-read_count', '-update_time')[:5]
+    # 获取更新时间排序最近5篇博客
+    if cache.get("latest_blogs"):
+        latest_blogs = cache.get("latest_blogs")
+        print("从缓存中加载最近博客")
+    else:
+        latest_blogs = Blog.objects.all().order_by('-update_time')[:5]
+        cache.set("latest_blogs", latest_blogs, 1800)
+        print("添加最近更新博客缓存")
 
     # 博客按照时间分类 以及每个分类下的博客数量
-    date_count_dict = {}
-    blog_dates = Blog.objects.dates('update_time', 'month', order='DESC')
-    for blog_date in blog_dates:
-        count = Blog.objects.filter(update_time__year=blog_date.year, update_time__month=blog_date.month).count()
-        date_count_dict[blog_date] = count
+    if cache.get("date_count_dict"):
+        date_count_dict = cache.get("date_count_dict")
+        print("从缓存中加载日期分类以及数量")
+    else:
+        date_count_dict = {}
+        blog_dates = Blog.objects.dates('update_time', 'month', order='DESC')
+        for blog_date in blog_dates:
+            count = Blog.objects.filter(update_time__year=blog_date.year,
+                                        update_time__month=blog_date.month).count()
+            date_count_dict[blog_date] = count
+        cache.set("date_count_dict", date_count_dict, 1800)
+        print("添加最近更新日期分类以及数量")
 
+    context['blog_types'] = blog_types
+    context['hot_blogs'] = hot_blogs
+    context['latest_blogs'] = latest_blogs
     context['date_count_dict'] = date_count_dict
     context['page_of_blogs'] = page_of_blogs
     context['page_range'] = page_range
     print(page_range)
 
     return render(request, 'blog/type.html', context)
-
 
 # 日期分类下的博客
 def get_blog_by_date(request, year, month):
@@ -181,23 +265,49 @@ def get_blog_by_date(request, year, month):
     context['page_of_blogs_with_date'] = page_of_blogs
 
     # 所有博客类型
-    blog_types = BlogType.objects.all()
-    context['blog_types'] = blog_types
+    if cache.get("blog_types"):  # 如果博客类型在缓存中，就从缓存中取得类型
+        blog_types = cache.get("blog_types")
+        print("从缓存中加载博客类型")
+    else:  # 操作DB取博客类型,并且添加缓存
+        blog_types = BlogType.objects.all()
+        cache.set("blog_types", blog_types, 1800)
+        print("添加博客类型缓存")
 
-    # 时间排序最近5篇博客
-    context['latest_blogs'] = Blog.objects.all().order_by('-update_time')[:5]
+    # 获取阅读量排序最近5篇博客
+    if cache.get("hot_blogs"):
+        hot_blogs = cache.get("hot_blogs")
+        print("从缓存中加载热门博客")
+    else:
+        hot_blogs = Blog.objects.all().order_by('-read_count', '-update_time')[:5]
+        cache.set("hot_blogs", hot_blogs, 1800)
+        print("添加热门博客缓存")
 
-    # 阅读量排序最近5篇博客
-    context['hot_blogs'] = Blog.objects.all().order_by('-read_count', '-update_time')[:5]
+    # 获取更新时间排序最近5篇博客
+    if cache.get("latest_blogs"):
+        latest_blogs = cache.get("latest_blogs")
+        print("从缓存中加载最近博客")
+    else:
+        latest_blogs = Blog.objects.all().order_by('-update_time')[:5]
+        cache.set("latest_blogs", latest_blogs, 1800)
+        print("添加最近更新博客缓存")
 
     # 博客按照时间分类 以及每个分类下的博客数量
-    date_count_dict = {}
-    blog_dates = Blog.objects.dates('update_time', 'month', order='DESC')
-    for blog_date in blog_dates:
-        count = Blog.objects.filter(update_time__year=blog_date.year, update_time__month=blog_date.month).count()
-        date_count_dict[blog_date] = count
+    if cache.get("date_count_dict"):
+        date_count_dict = cache.get("date_count_dict")
+        print("从缓存中加载日期分类以及数量")
+    else:
+        date_count_dict = {}
+        blog_dates = Blog.objects.dates('update_time', 'month', order='DESC')
+        for blog_date in blog_dates:
+            count = Blog.objects.filter(update_time__year=blog_date.year,
+                                        update_time__month=blog_date.month).count()
+            date_count_dict[blog_date] = count
+        cache.set("date_count_dict", date_count_dict, 1800)
+        print("添加最近更新日期分类以及数量")
 
-
+    context['blog_types'] = blog_types
+    context['hot_blogs'] = hot_blogs
+    context['latest_blogs'] = latest_blogs
     context['date_count_dict'] = date_count_dict
     context['page_of_blogs'] = page_of_blogs
     context['page_range'] = page_range

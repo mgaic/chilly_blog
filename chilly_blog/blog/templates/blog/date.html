@@ -35,7 +35,7 @@
 						</footer>
 					</article>
 					{% endfor %}
-					{% if page_of_blogs_with_date %}
+					{% if page_of_blogs_with_date  and page_range|last != 1%}
 					<ul class="pagination">
 						{% if page_of_blogs.has_previous %}
 						    <li><a href="?page={{page_of_blogs.previous_page_number}}">«</a></li>

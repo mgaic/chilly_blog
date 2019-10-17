@@ -209,7 +209,7 @@
 					$("textarea[name='content']").val(''); //清空文本框内容
 					$("#commentWraper").prepend(data.html); //添加评论节点
 					if(document.getElementById("no_comment")){ //删除暂无评论
-						alert("delete");
+
 						$('#no_comment').remove();
 					}
 					comment_count = Number($("#comment_count_span").text());
