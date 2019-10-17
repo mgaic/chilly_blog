@@ -1,14 +1,17 @@
 import json
-
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Blog, BlogType
 from django.shortcuts import get_object_or_404
 from django.conf import settings
+from django.core.cache import cache
 
 # 首页
 def index(request):
+    # cache.set("time", '2017', 60*60)
+    # print(cache.get("time"))
+
     context = {}
     # 所有博客类型
     blog_types = BlogType.objects.all()
@@ -149,6 +152,7 @@ def get_blog_by_type(request, type_id):
     context['date_count_dict'] = date_count_dict
     context['page_of_blogs'] = page_of_blogs
     context['page_range'] = page_range
+    print(page_range)
 
     return render(request, 'blog/type.html', context)
 
