@@ -28,7 +28,7 @@ class BlogAdmin(admin.ModelAdmin):
         if cache.get('all_blogs'):
             cache.delete('all_blogs')
             print("删除 all_blogs cache")
-
+。。
 
 
     def delete_model(self, request, obj):
