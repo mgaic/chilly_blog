@@ -1,7 +1,12 @@
-from django.db import models
 from ckeditor.fields import RichTextField
+from django.core.cache import cache
+from django.db import models
 # Create your models here.
 # from django.utils import timezone
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+
+
 class BlogType(models.Model):
     type_name = models.CharField(max_length = 32, verbose_name = '文章类型')
 
@@ -34,3 +39,25 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+@receiver(post_delete, sender=Blog)
+def delete_blog_cache(sender, instance, **kwargs):
+    print("delete blog")
+    if cache.get("hot_blogs"):
+        cache.delete('hot_blogs')
+        print("删除 hot_blogs cache")
+    if cache.get("latest_blogs"):
+        cache.delete('latest_blogs')
+        print("删除 latest_blogs cache")
+    if cache.get('date_count_dict'):
+        cache.delete('date_count_dict')
+        print("删除 date_count_dict cache")
+    if cache.get('all_blogs'):
+        cache.delete('all_blogs')
+        print("删除 all_blogs cache")
+
+@receiver(post_delete, sender=BlogType)
+def delete_blogtype_cache(sender, instance, **kwargs):
+    print("delete blogtype")
+    if cache.get("blog_types"):
+        cache.delete('blog_types')
+        print("删除 blog_types cache")

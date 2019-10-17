@@ -28,25 +28,9 @@ class BlogAdmin(admin.ModelAdmin):
         if cache.get('all_blogs'):
             cache.delete('all_blogs')
             print("删除 all_blogs cache")
-。。
 
 
-    def delete_model(self, request, obj):
-        print("delete blog")
-        if cache.get("hot_blogs"):
-            cache.delete('hot_blogs')
-            print("删除 hot_blogs cache")
-        if cache.get("latest_blogs"):
-            cache.delete('latest_blogs')
-            print("删除 latest_blogs cache")
-        if cache.get('date_count_dict'):
-            cache.delete('date_count_dict')
-            print("删除 date_count_dict cache")
-        if cache.get('all_blogs'):
-            cache.delete('all_blogs')
-            print("删除 all_blogs cache")
 
-        super().delete_model(request, obj)
 
 
 
@@ -63,10 +47,4 @@ class BlogAdmin(admin.ModelAdmin):
 
         super().save_model(request, obj, form, change)
 
-    def delete_model(self, request, obj):
 
-        if cache.get("blog_types"):
-            cache.delete('blog_types')
-            print("删除 blog_types cache")
-
-        super().delete_model(request, obj)
