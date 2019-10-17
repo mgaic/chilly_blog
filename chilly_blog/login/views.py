@@ -6,6 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 def login(request):
     if request.method == 'GET':
+        request.session['login_from'] = request.META.get('HTTP_REFERER', '/')
         return render(request, 'login/login.html')
     if request.method == 'POST':
 
@@ -16,10 +17,12 @@ def login(request):
         user = auth.authenticate(username = username, password = password)
 
         if user:
-            print("2")
+
             # 验证成功 登陆
             auth.login(request, user)
-            return HttpResponseRedirect('/')
+            print("成功登陆")
+            # print("session : ", request.session['login_from'])
+            return HttpResponseRedirect(request.session['login_from'])
         else:
             print("用户名或密码错误")
             return render(request, 'login/login.html', {'err_msg':'用户名或密码错误'})

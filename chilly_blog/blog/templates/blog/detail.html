@@ -1,6 +1,5 @@
 {% load static %}
-<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
-<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" lang="zh-CN">
@@ -100,6 +99,7 @@
 
 </head>
 
+
 <body class="home blog custom-background custom-font-enabled single-author">
 
 	<div id="page" class="hfeed site">
@@ -139,7 +139,7 @@
 					</div>
 				</nav>
 				<div id="comments" class="comments-area">
-					<h2 class="comments-title">《<span>{{cur_blog.title}}</span>》上共有{{cur_blog.customcomment_set.count}}条评论!</h2>
+					<h2 class="comments-title">《<span>{{cur_blog.title}}</span>》上共有 <span id="comment_count_span">{{cur_blog.customcomment_set.count}}</span>条评论!</h2>
 					<ol class="commentlist" id="commentWraper">
 						{% for comment in cur_blog.customcomment_set.all|slice:":5"  %}
 						<li class="comment even thread-even depth-0" id="li-comment-6">
@@ -155,7 +155,7 @@
 						{%  empty %}
 						<li class="comment even thread-even depth-0" id="li-comment-6">
 							<article id="comment-6" class="comment">
-								暂无评论
+								<span id="no_comment"> 暂无评论</span>
 								<section class="comment-content comment" style="margin-bottom:10px;line-height:25px;"></section>
 							</article>
 						</li>
@@ -163,13 +163,13 @@
 					</ol>
 					{% if not user.is_authenticated %}
 					<div id="respond">
-					<h3 id="reply-title">发表评论  <input type="submit" value="登录" onclick=" location.href = '{% url 'login' %}' ;"></h3>
+					<h3 id="reply-title">发表评论  <input type="submit" value="登录" onclick=" location.href = '{% url 'login' %}' ;return false;"></h3>
 					</div>
 					{% else %}
 					<div id="respond">
 						<h3 id="reply-title">发表评论 </h3>
 						<form  id="commentform">
-							<input type="hidden" name="_token" value="pjO628tjjcLWKrdk5MawxPJIPamJKMrLcNn8dil9">
+
 							<p class="comment-form-comment">
 								<textarea id="body" name="content" cols="45" rows="4" aria-required="true"></textarea>
 							</p>
@@ -185,7 +185,7 @@
 		</div>
 		{% include 'blog/footer.html' %}
 	</div>
-	<input type="button" id="test_btn" value="发表评论">
+
 	<script type="text/javascript">
 	$("#submit_btn").click(function(){
 		if ($("textarea[name='content']").val() == ''){
@@ -208,22 +208,25 @@
 					alert("评论成功");
 					$("textarea[name='content']").val(''); //清空文本框内容
 					$("#commentWraper").prepend(data.html); //添加评论节点
-<!--					alert($("#commentWraper").children("li").length);-->
-<!--					alert($("#commentWraper > li").length);-->
+					if(document.getElementById("no_comment")){ //删除暂无评论
+						alert("delete");
+						$('#no_comment').remove();
+					}
+					comment_count = Number($("#comment_count_span").text());
+					$("#comment_count_span").text(comment_count + 1);  //评论数量加1
 					if ($("#commentWraper").children("li").length > 5){ //显示的评论大于5条就删除最后一条评论
-						$("#commentWraper li:last-child").remove()
+						$("#commentWraper li:last-child").remove();
 					}
 
 				}
-				else{
-					alert("评论失败");
-				}
+
 
 
 			},
 			// 提交错误，调用方法
 			error: function(xhr){
-				console.log(xhr);
+				alert("评论失败");
+				alert(xhr);
 			}
 
    	 	});
