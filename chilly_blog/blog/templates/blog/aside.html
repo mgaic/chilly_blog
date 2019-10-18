@@ -4,14 +4,14 @@
 				<form role="search" id="searchform" action="" method="post">
 					<div>
 						<label class="screen-reader-text" for="s">搜索：</label>
-						<input placeholder="搜索" type="text" name="keywords" id="s">
+						<input placeholder="搜索" type="text" name="q" id="s">
 						<input type="submit" class="btn btn-default" id="searchsubmit" value="搜索">
 					</div>
 				</form>
                 <script type="text/javascript">
 					$(function (){
 						$("#searchsubmit").click(function (){
-							location.href = "http://www.zfsphp.com" + "/search/"+$("#s").val()+'.html';
+							location.href = "{% url 'haystack_search' %}"+ "?q=" + $("#s").val();
 							return false;
 						});
 					});

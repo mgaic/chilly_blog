@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from blog.search_view import MySearchView
 import login.urls
 import register.urls
 import custom_comment.urls
-
 import login.views as lv
 import blog.urls
 import blog.views as bv
@@ -29,11 +29,12 @@ urlpatterns = [
     path('comment/', include(custom_comment.urls)),
     path('logout/', lv.quit_login, name = 'logout'),
     path('', bv.index, name = 'index'),
-
+    path('search/', MySearchView.as_view(), name = "haystack_search"),
 
     path('login/', include(login.urls)),
     path('register/', include(register.urls)),
     path('blog/', include(blog.urls)),
+
 
 
 

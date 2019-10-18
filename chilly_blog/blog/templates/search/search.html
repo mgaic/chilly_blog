@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="zh-CN">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8" lang="zh-CN">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="zh-CN"><!--<![endif]-->
+
+{% include 'blog/header.html' %}
+
+<body class="home blog custom-background custom-font-enabled single-author">
+	<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+			{% include 'blog/title.html' %}
+			{% include 'blog/nav.html' %}
+		</header>
+		<div id="main" class="wrapper">
+            <h2 style="font-size:20px;">搜索结果如下：</h2>
+			<div id="primary" class="site-content">
+
+				<div id="content" role="main">
+
+					{% for result in page_obj.object_list %}
+					<article>
+						<header class="entry-header">
+							<h1 class="entry-title">
+								<a href="" title="{{result.object.title}}" rel="bookmark">{{result.object.title}}</a>
+							</h1>
+						</header>
+                        <div class="entry-content">{{blog.content | safe | truncatechars_html:100}}</div>
+						<footer class="entry-meta">
+							发布于<a href="#" title='{{ result.object.update_time | date:"Y-m-d" }}' rel="bookmark"><time class="entry-date" datetime='{{ result.object.update_time | date:"Y-m-d" }}'>{{ result.object.update_time | date:"Y-m-d" }}</time></a>。
+							属于 <a href="#" title="查看 {{result.object.blog_type}}中的全部文章" rel="category">{{result.object.blog_type}}</a> 分类。
+							阅读数： {{ result.object.read_count }}
+						</footer>
+						<footer class="entry-meta">
+
+						</footer>
+					</article>
+					{% endfor %}
+
+					{% if page_obj.object_list %}
+					<ul class="pagination">
+                        {% if page_obj.has_previous %}
+						    <li><a class="" href="?q={{ query }}&amp;page={{ page_obj.previous_page_number }}">上一页</a></li>
+						{% else %}
+                            <li><a href="javascript:void(0)">上一页</a></li>
+						{% endif %}
+
+                        {% if page_obj.has_next %}
+						    <li><a class="" href="?q={{ query }}&amp;page={{ page_obj.next_page_number }}">下一页</a></li>
+						{% else %}
+                            <li><a href="javascript:void(0)">下一页</a></li>
+						{% endif %}
+					</ul>
+					{% endif %}
+				</div>
+
+			</div>
+			{% include 'blog/aside.html' %}
+		</div>
+		{% include 'blog/footer.html' %}
+	</div>
+</body>
+</html>
+
+{% if query %}
+   <h3>搜索结果如下：</h3>
+   {% for result in page_obj.object_list %}
+       <a href="/{{ result.object.id }}/">{{ result.object.title }}</a><br/>
+   {% empty %}
+       <p>啥也没找到</p>
+   {% endfor %}
+
+   {% if page_obj.has_previous or page_obj.has_next %}
+       <div>
+
+       </div>
+   {% endif %}
+{% endif %}
