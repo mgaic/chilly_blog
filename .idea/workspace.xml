@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="edb916fd-f46f-4347-841b-90838ecde2b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/aside.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/blog/aside.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/search_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/search_view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/blog/templates/search/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/blog/templates/search/search.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/chilly_blog/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/chilly_blog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/whoosh_index/MAIN_4vwr1b4rqj5mqkng.seg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/whoosh_index/MAIN_k4ks0852nwbtxvp0.seg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chilly_blog/chilly_blog/whoosh_index/_MAIN_12.toc" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/chilly_blog/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/chilly_blog/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

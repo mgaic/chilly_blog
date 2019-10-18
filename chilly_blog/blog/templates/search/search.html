@@ -27,7 +27,7 @@
 					<article>
 						<header class="entry-header">
 							<h1 class="entry-title">
-								<a href="" title="{{result.object.title}}" rel="bookmark">{{result.object.title}}</a>
+								<a href="{% url 'detail' result.object.id %}" title="{{result.object.title}}" rel="bookmark">{{result.object.title}}</a>
 							</h1>
 						</header>
                         <div class="entry-content">{{blog.content | safe | truncatechars_html:100}}</div>
