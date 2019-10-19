@@ -22,7 +22,7 @@ import custom_comment.urls
 import login.views as lv
 import blog.urls
 import blog.views as bv
-
+import login.views as v
 
 urlpatterns = [
     path('admin/', admin.site.urls),

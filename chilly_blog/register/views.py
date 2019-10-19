@@ -1,10 +1,12 @@
+from django.conf import settings
 from django.contrib.auth.hashers import make_password
+from django.core.mail import send_mail
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.models import User
 # Create your views here.
 from django.urls import reverse
-
+from celery_tasks.tasks import send_register_success_email
 
 def register(request):
     if request.method == 'GET':
@@ -39,6 +41,8 @@ def register(request):
                     password = make_password(password, None, 'pbkdf2_sha256')
                     user = User(username=username, password=password, email=email)
                     user.save()
+                    # ()
+                    send_register_success_email.delay(email, user.username)
 
                     return HttpResponseRedirect( reverse('login') )
 

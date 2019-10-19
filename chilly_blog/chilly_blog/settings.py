@@ -170,3 +170,15 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 #设置每页显示的数目，默认为20，可以自己修改
 HAYSTACK_SEARCH_RESULTS_PER_PAGE  = 4
+
+
+
+# 邮件服务器配置
+EMAIL_HOST = 'smtp.qq.com'  # 如果是 163 改成 smtp.163.com
+EMAIL_PORT = 465
+EMAIL_HOST_USER = '1978912861@qq.com'  # 在这里填入您的QQ邮箱账号
+EMAIL_HOST_PASSWORD = 'vpktcggiafsnbaji'  # 请在这里填上您自己邮箱的授权码
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_USE_SSL = True
+
+

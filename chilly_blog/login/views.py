@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth import logout
+from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -22,7 +24,10 @@ def login(request):
             auth.login(request, user)
             print("成功登陆")
             # print("session : ", request.session['login_from'])
-            return HttpResponseRedirect(request.session['login_from'])
+            try:
+                return HttpResponseRedirect(request.session['login_from'])
+            except:
+                return HttpResponseRedirect('/')
         else:
             print("用户名或密码错误")
             return render(request, 'login/login.html', {'err_msg':'用户名或密码错误'})
@@ -32,3 +37,6 @@ def quit_login(request):
 
     return HttpResponseRedirect('/')
     # pass
+
+# Create your views here.
+
