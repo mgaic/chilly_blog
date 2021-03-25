@@ -26,7 +26,7 @@ pyembed-markdown==1.1.0
 Pygments==2.4.2
 pymdown-extensions==6.1
 pytz==2019.3
-PyYAML==5.1.2
+PyYAML==5.4
 redis==3.3.11
 register==0.1
 requests==2.22.0
